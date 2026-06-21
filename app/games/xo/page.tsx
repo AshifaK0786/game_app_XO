@@ -282,7 +282,7 @@ export default function XOGame() {
         {/* Game Board */}
         <Card className="bg-white/95 backdrop-blur-sm shadow-2xl">
           <CardContent className="p-6">
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {board.map((cell, index) => (
                 <motion.button
                   key={index}
@@ -290,7 +290,7 @@ export default function XOGame() {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleMove(index)}
                   className={`
-                    aspect-square bg-gray-50 rounded-xl text-5xl font-bold
+                    aspect-square bg-gray-50 rounded-lg sm:rounded-xl text-3xl sm:text-5xl font-bold
                     flex items-center justify-center transition-all duration-200 shadow-md
                     ${winningPattern.includes(index) ? "bg-green-200 ring-4 ring-green-400 shadow-lg" : ""}
                     ${cell ? "cursor-default" : "hover:bg-gray-100 cursor-pointer hover:shadow-lg"}
@@ -316,15 +316,15 @@ export default function XOGame() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-6 text-center space-y-3"
+            className="mt-4 sm:mt-6 text-center space-y-2 sm:space-y-3"
           >
             <Button
               onClick={resetGame}
-              className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 text-lg rounded-full"
+              className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg rounded-full"
             >
               Play Again
             </Button>
-            <Button variant="outline" onClick={() => setGameMode(null)} className="w-full">
+            <Button variant="outline" onClick={() => setGameMode(null)} className="w-full text-sm sm:text-base py-2 sm:py-2.5">
               Change Mode
             </Button>
           </motion.div>
@@ -338,7 +338,7 @@ export default function XOGame() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
             onClick={() => setShowWinner(false)}
           >
             <motion.div
@@ -346,18 +346,18 @@ export default function XOGame() {
               animate={{ scale: 1, rotate: 0 }}
               exit={{ scale: 0, rotate: 180 }}
               transition={{ type: "spring", bounce: 0.5 }}
-              className="bg-white rounded-2xl p-8 text-center max-w-sm mx-4"
+              className="bg-white rounded-2xl p-6 sm:p-8 text-center max-w-sm w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="mb-4">
+              <div className="mb-3 sm:mb-4">
                 {winner === "draw" ? (
-                  <div className="text-6xl">🤝</div>
+                  <div className="text-5xl sm:text-6xl">🤝</div>
                 ) : (
-                  <div className="text-6xl">{winner === "X" ? "❌" : "⭕"}</div>
+                  <div className="text-5xl sm:text-6xl">{winner === "X" ? "❌" : "⭕"}</div>
                 )}
               </div>
 
-              <h2 className="text-2xl font-bold mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2">
                 {winner === "draw"
                   ? "It's a Draw!"
                   : gameMode === "ai"
@@ -367,13 +367,13 @@ export default function XOGame() {
                     : `${winner} Wins!`}
               </h2>
 
-              <div className="flex space-x-2 justify-center mb-4">
-                <Sparkles className="w-5 h-5 text-yellow-500" />
-                <Trophy className="w-6 h-6 text-yellow-500" />
-                <Sparkles className="w-5 h-5 text-yellow-500" />
+              <div className="flex space-x-2 justify-center mb-3 sm:mb-4">
+                <Sparkles className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-500" />
+                <Trophy className="w-5 sm:w-6 h-5 sm:h-6 text-yellow-500" />
+                <Sparkles className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-500" />
               </div>
 
-              <p className="text-gray-600 mb-6">
+              <p className="text-xs sm:text-base text-gray-600 mb-4 sm:mb-6">
                 {winner === "draw"
                   ? "Great game! Try again!"
                   : gameMode === "ai" && winner === "X"
@@ -383,17 +383,17 @@ export default function XOGame() {
                       : "Congratulations on your victory!"}
               </p>
 
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 <Button
                   onClick={() => {
                     setShowWinner(false)
                     resetGame()
                   }}
-                  className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white"
+                  className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white py-2 sm:py-2.5 text-sm sm:text-base"
                 >
                   Play Again
                 </Button>
-                <Button variant="outline" onClick={() => setShowWinner(false)} className="w-full">
+                <Button variant="outline" onClick={() => setShowWinner(false)} className="w-full text-sm sm:text-base py-2 sm:py-2.5">
                   Close
                 </Button>
               </div>
